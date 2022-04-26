@@ -239,7 +239,9 @@ class StreamBuffer:
             while not self._stop_event.is_set():
                 # check if buffer is full and skip read or append
                 if self.auto_drop is True or len(self.source_buffer) < self._maxlen:
+                    logger.info('StreamBuffer:: Read ...')
                     data = self.source_reader.read()
+                    logger.info('StreamBuffer:: Read Done!')
                 else:
                     data = None
 
