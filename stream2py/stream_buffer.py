@@ -244,10 +244,13 @@ class StreamBuffer:
                     data = None
 
                 if data is not None:
+                    logger.info('StreamBuffer:: Append ...')
                     self.source_buffer.append(data)
+                    logger.info('StreamBuffer:: Append Done!')
                 else:
                     time.sleep(self._sleep_time_on_read_none_s)
         finally:
+            logger.warning('StreamBuffer:: Stop')
             if not self._stop_event.is_set():
                 self._stop_event.set()
             try:
